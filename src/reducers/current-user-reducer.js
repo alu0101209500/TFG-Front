@@ -3,7 +3,8 @@ import { LOG_OUT, SET_USER } from "../actions/user-actions";
 export default function signUpReducer(state = {username : "",
 fullname : "",
 email : "",
-registration : 0}, {type, payload}) {
+registration : 0,
+icon : ""}, {type, payload}) {
   switch (type) {
     case SET_USER:
       return(payload);
@@ -13,7 +14,8 @@ registration : 0}, {type, payload}) {
         username : "",
         fullname : "",
         email : "",
-        registration : 0
+        registration : 0,
+        icon : ""
       });
   
     default:

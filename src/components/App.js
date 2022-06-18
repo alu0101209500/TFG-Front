@@ -13,6 +13,8 @@ import { setToken } from '../actions/auth-actions';
 import { withCookies } from 'react-cookie';
 import { setUser } from '../actions/user-actions';
 import { updateDisplay } from '../actions/displayed-services-actions';
+import AdvancedSearch from './AdvancedSearch';
+import Profile from './Profile';
 
 class App extends React.Component {
   constructor(props) {
@@ -21,12 +23,17 @@ class App extends React.Component {
 
   componentDidMount() {
 
-    fetch(`/services?search=${this.props.displayedServices.search}&page=${this.props.displayedServices.page}&ipp=${this.props.displayedServices.ipp}`, {
-      method: 'GET',
+    fetch(`/services/search`, {
+      method: 'POST',
       headers: { 
         'Accept': '*/*',
         'Content-Type': 'application/json'
-      }
+      },
+      body: JSON.stringify({
+        search: this.props.displayedServices.search,
+        page:this.props.displayedServices.page,
+        ipp: this.props.displayedServices.ipp
+      })
     }).then(response => response.json()).then((e) => {
         if (e.type === "res") {
           this.props.onUpdateDisplay({
@@ -80,6 +87,8 @@ class App extends React.Component {
           <Route path="/signup" element={<SignUp props={{username: this.props.currentUser.username, redirect: this.props.displayedServices.homeredirect}}/>} />
           <Route path="/service" element={<Service props={{username: this.props.currentUser.username}}/>} />
           <Route path="/servicePost" element={<ServiceCreation props={{username: this.props.currentUser.username, redirect: this.props.displayedServices.homeredirect}}/>} />
+          <Route path="/advancedSearch" element={<AdvancedSearch props={{redirect: this.props.displayedServices.homeredirect}}/>} />
+          <Route path="/profilePage" element={<Profile props={{redirect: this.props.displayedServices.homeredirect}}/>} />
         </Routes>
         <Footer />
       </Router>

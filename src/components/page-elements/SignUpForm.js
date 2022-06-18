@@ -64,7 +64,7 @@ export class SignUpForm extends React.Component {
     }
 
     if(validQuery) {
-      let userFullname = this.props.signUp.name + " " + this.props.signUp.secondName;
+      let userFullname = this.props.signUp.name + " " + this.props.signUp.secondname;
       let requestOptions = {
         method: 'POST',
         headers: { 
@@ -80,7 +80,6 @@ export class SignUpForm extends React.Component {
       }
 //
       fetch("/users", requestOptions).then(response => response.json()).then((e) => {
-          console.log(e);
           if(e.type === "res") {
             this.props.onUpdateSignUpForm({
               target: {

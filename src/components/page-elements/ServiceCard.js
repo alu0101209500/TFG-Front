@@ -7,12 +7,13 @@ function ServiceCard(props) {
         img = serviceInfo.images.split(",")[0];
     }
     return (
-        <div class="small card" id={serviceInfo._id}>
+        <div class="medium card" id={serviceInfo._id}>
             <div class="card-image" id={serviceInfo._id}>
-            <img src={"data:image/png;base64," + img} id={ serviceInfo._id}/>
-            <span class="card-title" id={serviceInfo._id}>{serviceInfo.serviceName}</span>
+            <img src={"data:image/png;base64," + img} id={ serviceInfo._id}/>            
             </div>
             <div class="card-content" id={serviceInfo._id}>
+            <span class="card-title" id={serviceInfo._id}>{serviceInfo.serviceName}</span>
+            <p>{serviceInfo.price}€ {serviceInfo.priceType=="Total"?"":"/Hora"}</p>
             <p class="truncate" id={serviceInfo._id}>{serviceInfo.serviceDesc}</p>
             </div>
             <div class="card-action" id={serviceInfo._id}>

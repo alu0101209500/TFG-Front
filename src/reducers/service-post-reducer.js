@@ -1,8 +1,27 @@
-import { UPDATE_SP_FORM, RESET_SP_FORM, ADD_SP_IMAGE, RESET_SP_IMAGE } from "../actions/service-post-actions";
+import { UPDATE_SP_FORM, RESET_SP_FORM, ADD_SP_IMAGE, RESET_SP_IMAGE, CHANGE_TAG } from "../actions/service-post-actions";
 
 export default function servicePostReducer(state = {serviceName: "",
 serviceDescription: "",
 images: [],
+price: "",
+priceType: "Total",
+tags: {
+  "Diseño web": false,
+  "Software": false,
+  "Traducción": false,
+  "Trámites legales": false,
+  "Redacción": false,
+  "Correcciones": false,
+  "Composición musical": false,
+  "Ilustración": false,
+  "Modelado 3D": false,
+  "Edición de vídeos": false,
+  "Edición de imágenes": false,
+  "Márketing": false,
+  "Asesoría": false,
+  "Idiomas": false,
+  "Otro": false
+},
 finished: false}, {type, payload}) {
   let newState = {};
   switch (type) {
@@ -18,6 +37,25 @@ finished: false}, {type, payload}) {
         serviceName: "",
         serviceDescription: "",
         images: [],
+        price: "",
+        priceType: "Total",
+        tags: {
+          "Diseño web": false,
+          "Software": false,
+          "Traducción": false,
+          "Trámites legales": false,
+          "Redacción": false,
+          "Correcciones": false,
+          "Composición musical": false,
+          "Ilustración": false,
+          "Modelado 3D": false,
+          "Edición de vídeos": false,
+          "Edición de imágenes": false,
+          "Márketing": false,
+          "Asesoría": false,
+          "Idiomas": false,
+          "Otro": false
+        },
         finished: false
       });
     
@@ -32,6 +70,13 @@ finished: false}, {type, payload}) {
       newState = {...state};
       newState.images = []
       return(newState);
+
+    case CHANGE_TAG:
+      newState = {...state}
+      if(payload.name != undefined && payload.value != undefined) {
+        newState.tags[payload.name] = payload.value
+      }
+      return newState
     
     default:
       return(state);

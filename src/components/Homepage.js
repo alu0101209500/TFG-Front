@@ -21,12 +21,40 @@ export class Homepage extends React.Component {
   }
 
   handleClick() {
-    fetch(`/services?search=${this.props.displayedServices.search}&page=${this.props.displayedServices.page}&ipp=${this.props.displayedServices.ipp}`, {
-      method: 'GET',
+    let parsedTags = [];
+    for(let i in this.props.displayedServices.filters.tags) {
+        if (this.props.displayedServices.filters.tags[i] == true) {
+          parsedTags.push(i);
+        }
+    }
+    let datefrom = "";
+    let dateto = "";
+
+    if(this.props.displayedServices.filters.datefrom != "") {
+      datefrom = new Date(this.props.displayedServices.filters.datefrom).getTime()
+    }
+
+    if(this.props.displayedServices.filters.dateto != "") {
+      dateto = new Date(this.props.displayedServices.filters.dateto).getTime()
+    }
+
+    fetch(`/services/search`, {
+      method: 'POST',
       headers: { 
         'Accept': '*/*',
         'Content-Type': 'application/json'
-      }
+      },
+      body: JSON.stringify({
+        search: this.props.displayedServices.search,
+        page: this.props.displayedServices.page,
+        ipp: this.props.displayedServices.ipp,
+        datefrom: datefrom,
+        dateto: dateto,
+        pricefrom: this.props.displayedServices.filters.paymentfrom,
+        priceto: this.props.displayedServices.filters.paymentto,
+        priceType: this.props.displayedServices.filters.priceType,
+        tags: [...parsedTags]  
+      })
     }).then(response => response.json()).then((e) => {
         if (e.type === "res") {
           this.props.onAddContent([...e.value])
@@ -62,11 +90,10 @@ export class Homepage extends React.Component {
     let contentloader = <br/>
     if(this.props.displayedServices.services.length%this.props.displayedServices.ipp == 0 && this.props.displayedServices.services.length) {
       contentloader = 
-      <div class="center" onClick={this.handleClick}>
+      <div class="center" style={{borderColor: "lightgray", borderStyle: "solid", borderWidth: "thin"}} onClick={this.handleClick}>
         <p>Cargar más anuncios...</p>
       </div>
     }
- 
     return (
       <Main>
         <div class="row">

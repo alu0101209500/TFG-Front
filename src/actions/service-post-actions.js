@@ -2,6 +2,7 @@ export const UPDATE_SP_FORM = 'displayedServices:updateServiceForm';
 export const RESET_SP_FORM = 'displayedServices:resetServiceForm';
 export const ADD_SP_IMAGE = 'displayedServices:addImage';
 export const RESET_SP_IMAGE = 'displayedServices:resetImage';
+export const CHANGE_TAG = 'displayedServices:changeTag';
 
 export function updateServiceForm(event) {
   return ({
@@ -34,4 +35,14 @@ export function addImage(event) {
       type: RESET_SP_IMAGE,
       payload: { }
     });
+  }
+
+  export function changeTag(event) {
+    return ({
+      type: CHANGE_TAG,
+      payload: {
+        name: event.target.value,
+        value: event.target.checked
+      }
+    })
   }

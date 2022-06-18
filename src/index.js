@@ -11,6 +11,7 @@ import signInReducer from './reducers/sign-in-reducer';
 import authReducer from './reducers/auth-reducer';
 import displayedServicesReducer from './reducers/displayed-services-reducer'
 import servicePostReducer from './reducers/service-post-reducer';
+import displayedProfileReducer from './reducers/displayed-profile-reducer';
 
 const allReducers = combineReducers({
   currentUser: currentUserReducer,
@@ -18,15 +19,30 @@ const allReducers = combineReducers({
   signUp: signUpReducer,
   auth: authReducer,
   displayedServices: displayedServicesReducer,
-  servicePost: servicePostReducer
+  servicePost: servicePostReducer,
+  displayedProfile: displayedProfileReducer
 }); 
 
 const store = createStore(allReducers, {
+  displayedProfile : {
+    username : "", 
+    fullname : "",
+    email : "",
+    registration : 0,
+    reviewNumber : 0,
+    reviewScore: 0,
+    icon: "",
+    description: "",
+    userServices: [],
+    newIcon: "",
+    newDescription: ""
+  },
   currentUser: {
     username : "",
     fullname : "",
     email : "",
-    registration : 0
+    registration : 0,
+    icon: ""
   },
   signIn: {
     username : "",
@@ -53,6 +69,31 @@ const store = createStore(allReducers, {
     page: 0,
     ipp: 20,
     search: "",
+    filters: {
+      datefrom: "",
+      dateto: "",
+      pricefrom: "",
+      priceto: "",
+      priceType: "",
+      tags: {
+        "Diseño web": false,
+        "Software": false,
+        "Traducción": false,
+        "Trámites legales": false,
+        "Redacción": false,
+        "Correcciones": false,
+        "Composición musical": false,
+        "Ilustración": false,
+        "Modelado 3D": false,
+        "Edición de vídeos": false,
+        "Edición de imágenes": false,
+        "Márketing": false,
+        "Asesoría": false,
+        "Idiomas": false,
+        "Otro": false
+      }
+    },
+    displayedIcon: "",
     displayed: {},
     homeredirect: false
   },
@@ -60,6 +101,25 @@ const store = createStore(allReducers, {
     serviceName: "",
     serviceDescription: "",
     images: [],
+    price: "",
+    priceType: "Total",
+    tags: {
+      "Diseño web": false,
+      "Software": false,
+      "Traducción": false,
+      "Trámites legales": false,
+      "Redacción": false,
+      "Correcciones": false,
+      "Composición musical": false,
+      "Ilustración": false,
+      "Modelado 3D": false,
+      "Edición de vídeos": false,
+      "Edición de imágenes": false,
+      "Márketing": false,
+      "Asesoría": false,
+      "Idiomas": false,
+      "Otro": false
+    },
     finished: false
   }
 },
