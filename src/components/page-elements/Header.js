@@ -180,12 +180,12 @@ export class Header extends React.Component {
 
         <ul class="sidenav" id="mobile-demo">
           <ul class="collection">
-            <li class="collection-item avatar">
-              <img src={"data:image/png;base64," + baseimg} alt="" class="circle"/>
+            <li class="collection-item avatar" style={{backgroundColor: "#f0fff8"}}>
+              <img src={"data:image/png;base64," + this.props.currentUser.icon} alt="" class="circle"/>
               <span class="title">{this.props.currentUser.username}</span>
               <NavLink to="/profilePage" onClick={this.loadProfile}>Mi perfil</NavLink>
               <NavLink to="/" onClick={this.handleButton}>Mis transacciones</NavLink>
-              <NavLink to="/" onClick={this.handleButton}>Mis mensajes</NavLink>
+              <NavLink to="/messagesPage" onClick={this.handleButton}>Mis mensajes</NavLink>
             </li>
           </ul>
           <li><NavLink to="/advancedSearch" onClick={this.handleButton}>Búsqueda avanzada</NavLink></li>
@@ -197,7 +197,7 @@ export class Header extends React.Component {
         <ul id='dropdown1' class='dropdown-content'>
           <li><NavLink to="/profilePage"><a tabindex="-1" href="#" type="button" onClick={this.loadProfile} style={{color: "#26a69a"}}>Mi perfil</a></NavLink></li>
           <li><NavLink to="/"><a tabindex="-1" href="#" type="button" onClick={this.handleButton} style={{color: "#26a69a"}}>Mis transacciones</a></NavLink></li>
-          <li><NavLink to="/"><a tabindex="-1" href="#" type="button" onClick={this.handleButton} style={{color: "#26a69a"}}>Mis mensajes</a></NavLink></li>
+          <li><NavLink to="/messagesPage"><a tabindex="-1" href="#" type="button" onClick={this.handleButton} style={{color: "#26a69a"}}>Mis mensajes</a></NavLink></li>
           <li class="divider" tabindex="-1"></li>
           <li><NavLink to="/servicePost"><a tabindex="-1" href="#" type="button" onClick={this.handleButton} style={{color: "#26a69a"}}>Publicar servicio</a></NavLink></li>
           <li class="divider" tabindex="-1"></li>
@@ -205,15 +205,6 @@ export class Header extends React.Component {
         </ul>
 
       </div>
-      /*<ul id='dropdown1' class='dropdown-content'>
-          <li><a href="#" type="button" onClick={this.handleButton}><NavLink to="/">Mi perfil</NavLink></a></li>
-          <li><a href="#" type="button" onClick={this.handleButton}><NavLink to="/">Mis transacciones</NavLink></a></li>
-          <li><a href="#" type="button" onClick={this.handleButton}><NavLink to="/">Mis mensajes</NavLink></a></li>
-          <li class="divider" tabindex="-1"></li>
-          <li><a href="#" type="button" onClick={this.handleButton}><NavLink to="/servicePost">Publicar servicio</NavLink></a></li>
-          <li class="divider" tabindex="-1"></li>
-          <li><a href="#" type="button" onClick={this.handleClick}>Cerrar Sesión</a></li>
-        </ul>*/
 
       if(this.props.currentUser.username === ""){
         return notlogged

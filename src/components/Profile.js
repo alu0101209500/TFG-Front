@@ -167,7 +167,7 @@ export class Profile extends React.Component {
       if(this.props.displayedProfile.username == "") {
         this.props.onSetRedirect(true);
       }
-    },400)
+    },4000)
   }
 
   render() {

@@ -12,6 +12,7 @@ import authReducer from './reducers/auth-reducer';
 import displayedServicesReducer from './reducers/displayed-services-reducer'
 import servicePostReducer from './reducers/service-post-reducer';
 import displayedProfileReducer from './reducers/displayed-profile-reducer';
+import displayedMessagesReducer from './reducers/displayed-messages-reducer';
 
 const allReducers = combineReducers({
   currentUser: currentUserReducer,
@@ -20,10 +21,23 @@ const allReducers = combineReducers({
   auth: authReducer,
   displayedServices: displayedServicesReducer,
   servicePost: servicePostReducer,
-  displayedProfile: displayedProfileReducer
+  displayedProfile: displayedProfileReducer,
+  displayedMessages: displayedMessagesReducer
 }); 
 
 const store = createStore(allReducers, {
+  displayedMessages : {
+    newMessage: {
+      to: "",
+      subject: "",
+      message: ""
+    },
+    displayed: {},
+    interactionIndex: ":",
+    received: [],
+    sent: [],
+    displayEditor: false
+  },
   displayedProfile : {
     username : "", 
     fullname : "",

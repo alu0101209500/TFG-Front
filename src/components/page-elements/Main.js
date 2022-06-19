@@ -7,9 +7,9 @@ function Main(props) {
         minHeight: "80vh",
         marginTop: "5vh",
         marginBottom: "5%",
-        marginLeft: "10%",
-        marginRight: "10%",
-        width: "80%",
+        marginLeft: "5%",
+        marginRight: "5%",
+        width: "90%",
         backgroundColor: "white",
         boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"
     } 

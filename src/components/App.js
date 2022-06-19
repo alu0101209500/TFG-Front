@@ -15,6 +15,7 @@ import { setUser } from '../actions/user-actions';
 import { updateDisplay } from '../actions/displayed-services-actions';
 import AdvancedSearch from './AdvancedSearch';
 import Profile from './Profile';
+import Messages from './Messages';
 
 class App extends React.Component {
   constructor(props) {
@@ -89,6 +90,7 @@ class App extends React.Component {
           <Route path="/servicePost" element={<ServiceCreation props={{username: this.props.currentUser.username, redirect: this.props.displayedServices.homeredirect}}/>} />
           <Route path="/advancedSearch" element={<AdvancedSearch props={{redirect: this.props.displayedServices.homeredirect}}/>} />
           <Route path="/profilePage" element={<Profile props={{redirect: this.props.displayedServices.homeredirect}}/>} />
+          <Route path="/messagesPage" element={<Messages/>}/>
         </Routes>
         <Footer />
       </Router>
