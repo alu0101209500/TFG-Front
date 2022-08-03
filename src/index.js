@@ -13,6 +13,7 @@ import displayedServicesReducer from './reducers/displayed-services-reducer'
 import servicePostReducer from './reducers/service-post-reducer';
 import displayedProfileReducer from './reducers/displayed-profile-reducer';
 import displayedMessagesReducer from './reducers/displayed-messages-reducer';
+import displayedTransactionsReducer from './reducers/displayed-transactions-reducer';
 
 const allReducers = combineReducers({
   currentUser: currentUserReducer,
@@ -22,7 +23,8 @@ const allReducers = combineReducers({
   displayedServices: displayedServicesReducer,
   servicePost: servicePostReducer,
   displayedProfile: displayedProfileReducer,
-  displayedMessages: displayedMessagesReducer
+  displayedMessages: displayedMessagesReducer,
+  displayedTransactions: displayedTransactionsReducer
 }); 
 
 const store = createStore(allReducers, {
@@ -37,6 +39,18 @@ const store = createStore(allReducers, {
     received: [],
     sent: [],
     displayEditor: false
+  },
+  displayedTransactions : {
+    inputFields: {
+      aplicantNotes: "",
+      proprietaryNotes: "",
+      finalPayment: 0,
+      firstPayment: 0,
+      punctuation: 5,
+    },
+    responseMsg: "",
+    interactionIndex: 0,
+    transactions: []
   },
   displayedProfile : {
     username : "", 

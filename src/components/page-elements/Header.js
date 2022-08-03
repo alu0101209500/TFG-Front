@@ -184,7 +184,7 @@ export class Header extends React.Component {
               <img src={"data:image/png;base64," + this.props.currentUser.icon} alt="" class="circle"/>
               <span class="title">{this.props.currentUser.username}</span>
               <NavLink to="/profilePage" onClick={this.loadProfile}>Mi perfil</NavLink>
-              <NavLink to="/" onClick={this.handleButton}>Mis transacciones</NavLink>
+              <NavLink to="/transactionsPage" onClick={this.handleButton}>Mis transacciones</NavLink>
               <NavLink to="/messagesPage" onClick={this.handleButton}>Mis mensajes</NavLink>
             </li>
           </ul>
@@ -195,11 +195,11 @@ export class Header extends React.Component {
 
 
         <ul id='dropdown1' class='dropdown-content'>
-          <li><NavLink to="/profilePage"><a tabindex="-1" href="#" type="button" onClick={this.loadProfile} style={{color: "#26a69a"}}>Mi perfil</a></NavLink></li>
-          <li><NavLink to="/"><a tabindex="-1" href="#" type="button" onClick={this.handleButton} style={{color: "#26a69a"}}>Mis transacciones</a></NavLink></li>
-          <li><NavLink to="/messagesPage"><a tabindex="-1" href="#" type="button" onClick={this.handleButton} style={{color: "#26a69a"}}>Mis mensajes</a></NavLink></li>
+          <li><NavLink to="/profilePage"><a tabindex="-1" href="#" type="button" class="nohovering" onClick={this.loadProfile} style={{color: "#26a69a"}}>Mi perfil</a></NavLink></li>
+          <li><NavLink to="/transactionsPage"><a tabindex="-1" href="#" type="button" class="nohovering" onClick={this.handleButton} style={{color: "#26a69a"}}>Mis transacciones</a></NavLink></li>
+          <li><NavLink to="/messagesPage"><a tabindex="-1" href="#" type="button" class="nohovering" onClick={this.handleButton} style={{color: "#26a69a"}}>Mis mensajes</a></NavLink></li>
           <li class="divider" tabindex="-1"></li>
-          <li><NavLink to="/servicePost"><a tabindex="-1" href="#" type="button" onClick={this.handleButton} style={{color: "#26a69a"}}>Publicar servicio</a></NavLink></li>
+          <li><NavLink to="/servicePost"><a tabindex="-1" href="#" type="button" class="nohovering" onClick={this.handleButton} style={{color: "#26a69a"}}>Publicar servicio</a></NavLink></li>
           <li class="divider" tabindex="-1"></li>
           <li><a href="#" type="button" onClick={this.handleClick}>Cerrar Sesión</a></li>
         </ul>

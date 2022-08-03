@@ -25,7 +25,7 @@ export function addImage(event) {
     return ({
       type: ADD_SP_IMAGE,
       payload: {
-        img: String(event)
+        img: [...event]
       }
     });
   }

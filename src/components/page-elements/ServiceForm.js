@@ -18,6 +18,29 @@ export class ServiceForm extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.handleImageUpload = this.handleImageUpload.bind(this);
+    this.attachImages = this.attachImages.bind(this)
+  }
+
+  attachImages(index, files, results) {
+    let that = this;
+    return new Promise((res, rej) => {
+        if(index >= files.length) {
+            res(results);
+        } else {
+            if (!/image/.test(files[index].type)) {
+                console.log("Formato no válido: " + files[index].type);
+                that.attachImages(index+1, files, results).then((val) => res(val)).catch((err) => {rej(err)})
+            } else {
+                var reader = new FileReader();
+                reader.readAsDataURL(files[index]);
+                reader.onloadend = function() {
+                    let img = reader.result.split(",")[1];
+                    results.push(img)
+                    that.attachImages(index+1, files, results).then((val) => res(val)).catch((err) => {rej(err)})
+                };
+            }
+        }
+    })
   }
 
   handleImageUpload(e) {
@@ -26,7 +49,11 @@ export class ServiceForm extends React.Component {
     let files = [];
     files = [...e.target.files];
     console.log(files)
-    for (let i = 0; i < files.length; i++){
+    let results = []
+    this.attachImages(0, files, results).then((values) => {
+        this.props.onAddImage(values);
+    }).catch((err) => console.log(err))
+    /*for (let i = 0; i < files.length; i++){
         if (!/image/.test(files[i].type)) {
             console.log("Formato no válido: " + files[i].type);
         } else {
@@ -37,7 +64,7 @@ export class ServiceForm extends React.Component {
                 that.props.onAddImage(img);
             };
         }
-    }
+    }*/
   }
 
   handleKeyPress(e) {

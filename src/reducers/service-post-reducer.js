@@ -62,7 +62,7 @@ finished: false}, {type, payload}) {
     case ADD_SP_IMAGE:
       newState = {...state};
       if(payload.img != undefined) {
-          newState.images.push(payload.img)
+          newState.images = payload.img
       }
       return(newState);
 

@@ -98,6 +98,7 @@ export class Messages extends React.Component {
   }
 
   handleInteraction(e) {
+    console.log(e)
     this.props.onSetInteractionIndex(e.target.id);
   }
 
@@ -209,9 +210,9 @@ export class Messages extends React.Component {
 
     for(let i in this.props.displayedMessages.received) {
       let code = "received:" + String(i);
-      let selectedColor = {cursor: "select"}
+      let selectedColor = {cursor: "pointer"}
       if(this.props.displayedMessages.received[i]._id == this.props.displayedMessages.displayed._id) {
-        selectedColor = {cursor: "select", backgroundColor: "#f0fff8"}
+        selectedColor = {cursor: "pointer", backgroundColor: "#f0fff8"}
       }
       receivedList.push(
         <li class="collection-item avatar hoverable" id={code} onClick={this.handleSelection} style={selectedColor}>
@@ -220,7 +221,7 @@ export class Messages extends React.Component {
             <p  id={code} class="truncate" onClick={this.handleSelection}>From: {this.props.displayedMessages.received[i].from}</p>
             <p id={code} onClick={this.handleSelection}>At: {new Date(Number(this.props.displayedMessages.received[i].sentAt)).toDateString()}</p>
             <p id={code} class="truncate" onClick={this.handleSelection}>{this.props.displayedMessages.received[i].message}</p>
-            <a id={code} href="#!" onClick={this.handleInteraction} data-target="eliminarMensaje" class="secondary-content modal-trigger"><i class="material-icons">close</i></a>
+            <a id={code} href="#!" onClick={this.handleInteraction} data-target="eliminarMensaje" class="secondary-content modal-trigger"><i id={code} class="material-icons">close</i></a>
         </li>
       )
 
@@ -231,16 +232,16 @@ export class Messages extends React.Component {
             <p  id={code} class="truncate" onClick={this.handleSelection}>From: {this.props.displayedMessages.received[i].from}</p>
             <p id={code} onClick={this.handleSelection}>At: {new Date(Number(this.props.displayedMessages.received[i].sentAt)).toDateString()}</p>
             <p id={code} class="truncate" onClick={this.handleSelection}>{this.props.displayedMessages.received[i].message}</p>
-            <a id={code} href="#!" onClick={this.handleInteraction} data-target="eliminarMensaje" class="secondary-content modal-trigger"><i class="material-icons">close</i></a>
+            <a id={code} href="#!" onClick={this.handleInteraction} data-target="eliminarMensaje" class="secondary-content modal-trigger"><i id={code} class="material-icons">close</i></a>
         </li>
       )
 
     }
     for(let i in this.props.displayedMessages.sent) {
       let code = "sent:" + String(i);
-      let selectedColor = {cursor: "select"}
+      let selectedColor = {cursor: "pointer"}
       if(this.props.displayedMessages.sent[i]._id == this.props.displayedMessages.displayed._id) {
-        selectedColor = {cursor: "select", backgroundColor: "#f0fff8"}
+        selectedColor = {cursor: "pointer", backgroundColor: "#f0fff8"}
       }
       sentList.push(
         <li class="collection-item avatar hoverable" id={code} onClick={this.handleSelection} style={selectedColor}>
@@ -370,7 +371,7 @@ export class Messages extends React.Component {
           </a>
         </div>
 
-        <div id="eliminarMensaje" class="modal" style={{width: "30%"}}>
+        <div id="eliminarMensaje" class="modal">
           <div class="modal-content">
             <h4 class="center-align">Eliminar mensaje</h4>
             <p class="center-align">¿Seguro que desea eliminar el mensaje?</p>

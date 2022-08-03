@@ -16,6 +16,7 @@ import { updateDisplay } from '../actions/displayed-services-actions';
 import AdvancedSearch from './AdvancedSearch';
 import Profile from './Profile';
 import Messages from './Messages';
+import Transactions from './Transactions';
 
 class App extends React.Component {
   constructor(props) {
@@ -91,6 +92,7 @@ class App extends React.Component {
           <Route path="/advancedSearch" element={<AdvancedSearch props={{redirect: this.props.displayedServices.homeredirect}}/>} />
           <Route path="/profilePage" element={<Profile props={{redirect: this.props.displayedServices.homeredirect}}/>} />
           <Route path="/messagesPage" element={<Messages/>}/>
+          <Route path="/transactionsPage" element={<Transactions/>}/>
         </Routes>
         <Footer />
       </Router>
